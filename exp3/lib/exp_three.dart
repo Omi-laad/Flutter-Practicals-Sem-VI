@@ -8,50 +8,105 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Demo Home Page'),
+        title: const Text('Flutter Experiment 3'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'Welcome to the Home Page!',
-              style: TextStyle(fontSize: 24),
+            Text(
+              'Welcome to the Home Page! Click on the different types of  buttons below to see the toast messages.',
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.teal),
+              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-                foregroundColor: Colors.white,
-              ),
-              onPressed: () {
-                Fluttertoast.showToast(
-                    msg: "HELLO THIS IS A TOAST MESSAGE",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
-              },
-              child: Text("CLICK ME"),
-            ),
-            FilledButton(
-              onPressed: () {},
-              child: Text("CLICK ME"),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: Text("CLICK ME"),
-            ),
-            OutlinedButton(
-              onPressed: () {},
-              child: Text("CLICK ME"),
-            ),
-            CloseButton(
-              onPressed: () {},
-            ),
-            BackButton()
+            const SizedBox(height: 40),
+            Column(
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.teal,
+                    foregroundColor: Colors.white,
+                  ),
+                  onPressed: () {
+                    Fluttertoast.showToast(
+                        msg:
+                            "HELLO THIS IS A TOAST MESSAGE FROM ELEVATED BUTTON",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.teal,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  },
+                  child: Text("Elevated Button"),
+                ),
+                FilledButton(
+                  onPressed: () {
+                    Fluttertoast.showToast(
+                        msg: "HELLO THIS IS A TOAST MESSAGE FROM FILLED BUTTON",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.SNACKBAR,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.teal,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  },
+                  child: Text("Filled Button"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Fluttertoast.showToast(
+                        msg: "HELLO THIS IS A TOAST MESSAGE FROM TEXT BUTTON",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.SNACKBAR,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.teal,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  },
+                  child: Text("Text Button"),
+                ),
+                OutlinedButton(
+                  onPressed: () {
+                    Fluttertoast.showToast(
+                        msg:
+                            "HELLO THIS IS A TOAST MESSAGE FROM OUTLINED BUTTON",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.SNACKBAR,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.teal,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  },
+                  child: Text("Outlined Button"),
+                ),
+                CloseButton(
+                  onPressed: () {
+                    Fluttertoast.showToast(
+                        msg: "HELLO THIS IS A TOAST MESSAGE FROM CLOSE BUTTON",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.SNACKBAR,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.teal,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  },
+                ),
+                BackButton(onPressed: () {
+                  Fluttertoast.showToast(
+                      msg: "HELLO THIS IS A TOAST MESSAGE FROM BACK BUTTON",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.SNACKBAR,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.teal,
+                      textColor: Colors.white,
+                      fontSize: 16.0);
+                }),
+              ],
+            )
           ],
         ),
       ),
