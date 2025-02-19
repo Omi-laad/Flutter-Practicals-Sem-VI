@@ -4,112 +4,108 @@ import 'package:fluttertoast/fluttertoast.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
+  void showToast(String message) {
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.teal,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Experiment 3'),
+        title: const Text('Flutter Button Table'),
+        backgroundColor: Colors.teal,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Welcome to the Home Page! Click on the different types of  buttons below to see the toast messages.',
-              style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.teal),
-              textAlign: TextAlign.center,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Welcome to the Home Page! Click on the different types of  buttons below to see the toast messages.",
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.teal),
+                textAlign: TextAlign.start,
+              ),
             ),
-            const SizedBox(height: 40),
-            Column(
-              children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal,
-                    foregroundColor: Colors.white,
-                  ),
-                  onPressed: () {
-                    Fluttertoast.showToast(
-                        msg:
-                            "HELLO THIS IS A TOAST MESSAGE FROM ELEVATED BUTTON",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.CENTER,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.teal,
-                        textColor: Colors.white,
-                        fontSize: 16.0);
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: Table(
+                  border: TableBorder.all(
+                      borderRadius: BorderRadius.circular(10),
+                      color:
+                          Colors.teal), // Adds borders for a clear table view
+                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                  columnWidths: const {
+                    0: FlexColumnWidth(1),
+                    1: FlexColumnWidth(1),
                   },
-                  child: Text("Elevated Button"),
+                  children: [
+                    _buildTableRow(
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.teal,
+                            foregroundColor: Colors.white,
+                          ),
+                          onPressed: () => showToast(
+                              "HELLO THIS IS A TOAST MESSAGE FROM ELEVATED BUTTON"),
+                          child: const Text("Elevated Button"),
+                        ),
+                        FilledButton(
+                          onPressed: () => showToast(
+                              "HELLO THIS IS A TOAST MESSAGE FROM FILLED BUTTON"),
+                          child: const Text("Filled Button"),
+                        )),
+                    _buildTableRow(
+                        TextButton(
+                          onPressed: () => showToast(
+                              "HELLO THIS IS A TOAST MESSAGE FROM TEXT BUTTON"),
+                          child: const Text("Text Button"),
+                        ),
+                        OutlinedButton(
+                          onPressed: () => showToast(
+                              "HELLO THIS IS A TOAST MESSAGE FROM OUTLINED BUTTON"),
+                          child: const Text("Outlined Button"),
+                        )),
+                    _buildTableRow(
+                        CloseButton(
+                          onPressed: () => showToast(
+                              "HELLO THIS IS A TOAST MESSAGE FROM CLOSE BUTTON"),
+                        ),
+                        BackButton(
+                          onPressed: () => showToast(
+                              "HELLO THIS IS A TOAST MESSAGE FROM BACK BUTTON"),
+                        )),
+                  ],
                 ),
-                FilledButton(
-                  onPressed: () {
-                    Fluttertoast.showToast(
-                        msg: "HELLO THIS IS A TOAST MESSAGE FROM FILLED BUTTON",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.SNACKBAR,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.teal,
-                        textColor: Colors.white,
-                        fontSize: 16.0);
-                  },
-                  child: Text("Filled Button"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Fluttertoast.showToast(
-                        msg: "HELLO THIS IS A TOAST MESSAGE FROM TEXT BUTTON",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.SNACKBAR,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.teal,
-                        textColor: Colors.white,
-                        fontSize: 16.0);
-                  },
-                  child: Text("Text Button"),
-                ),
-                OutlinedButton(
-                  onPressed: () {
-                    Fluttertoast.showToast(
-                        msg:
-                            "HELLO THIS IS A TOAST MESSAGE FROM OUTLINED BUTTON",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.SNACKBAR,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.teal,
-                        textColor: Colors.white,
-                        fontSize: 16.0);
-                  },
-                  child: Text("Outlined Button"),
-                ),
-                CloseButton(
-                  onPressed: () {
-                    Fluttertoast.showToast(
-                        msg: "HELLO THIS IS A TOAST MESSAGE FROM CLOSE BUTTON",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.SNACKBAR,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.teal,
-                        textColor: Colors.white,
-                        fontSize: 16.0);
-                  },
-                ),
-                BackButton(onPressed: () {
-                  Fluttertoast.showToast(
-                      msg: "HELLO THIS IS A TOAST MESSAGE FROM BACK BUTTON",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.SNACKBAR,
-                      timeInSecForIosWeb: 1,
-                      backgroundColor: Colors.teal,
-                      textColor: Colors.white,
-                      fontSize: 16.0);
-                }),
-              ],
-            )
+              ),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  TableRow _buildTableRow(Widget button1, Widget button2) {
+    return TableRow(children: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: button1,
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: button2,
+      ),
+    ]);
   }
 }
